@@ -1,0 +1,9 @@
+{
+	"name": "adf-notebook01",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "90030e74-3a41-4853-8107-db1d5c3e1803",
+		"tenantId": "f8b75f7f-662d-45ab-9280-8dcd2c8d25f6"
+	}
+}
