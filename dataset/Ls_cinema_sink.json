@@ -1,0 +1,22 @@
+{
+	"name": "Ls_cinema_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsBlobStoragesink",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "stdemosink"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
