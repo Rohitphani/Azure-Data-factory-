@@ -11,14 +11,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Ls_BlobStorage'"
 		},
-		"lsBlobStorage_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'lsBlobStorage'"
-		},
-		"lsBlobStoragesink_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'lsBlobStoragesink'"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -48,12 +40,6 @@
 					},
 					"Ls_BlobStorage_connectionString": {
 						"value": "[parameters('Ls_BlobStorage_connectionString')]"
-					},
-					"lsBlobStorage_connectionString": {
-						"value": "[parameters('lsBlobStorage_connectionString')]"
-					},
-					"lsBlobStoragesink_connectionString": {
-						"value": "[parameters('lsBlobStoragesink_connectionString')]"
 					}
 				}
 			},

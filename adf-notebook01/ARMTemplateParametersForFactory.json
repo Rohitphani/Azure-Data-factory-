@@ -7,12 +7,6 @@
 		},
 		"Ls_BlobStorage_connectionString": {
 			"value": ""
-		},
-		"lsBlobStorage_connectionString": {
-			"value": ""
-		},
-		"lsBlobStoragesink_connectionString": {
-			"value": ""
 		}
 	}
 }
