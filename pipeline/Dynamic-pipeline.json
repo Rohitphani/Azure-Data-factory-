@@ -52,8 +52,14 @@
 						"referenceName": "ds_dynamic_pipeline",
 						"type": "DatasetReference",
 						"parameters": {
-							"FolderName": "raw-datasets",
-							"FileName": "Cars Datasets 2025.csv"
+							"FolderName": {
+								"value": "@pipeline().parameters.SourceFolder",
+								"type": "Expression"
+							},
+							"FileName": {
+								"value": "@pipeline().parameters.SourceFileName",
+								"type": "Expression"
+							}
 						}
 					}
 				],
@@ -62,13 +68,33 @@
 						"referenceName": "ds_dynamic_pipeline",
 						"type": "DatasetReference",
 						"parameters": {
-							"FolderName": "archieve-datsets",
-							"FileName": "cars data"
+							"FolderName": {
+								"value": "@pipeline().parameters.TargetFolder",
+								"type": "Expression"
+							},
+							"FileName": {
+								"value": "@pipeline().parameters.TargetFileName",
+								"type": "Expression"
+							}
 						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"SourceFolder": {
+				"type": "string"
+			},
+			"SourceFileName": {
+				"type": "string"
+			},
+			"TargetFolder": {
+				"type": "string"
+			},
+			"TargetFileName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
