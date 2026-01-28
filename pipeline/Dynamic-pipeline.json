@@ -83,16 +83,20 @@
 		],
 		"parameters": {
 			"SourceFolder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "raw-datasets"
 			},
 			"SourceFileName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "emp_salary_dataset.csv"
 			},
 			"TargetFolder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "archieve-datasets"
 			},
 			"TargetFileName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Emp_salary_data"
 			}
 		},
 		"annotations": []
