@@ -1,5 +1,5 @@
 {
-	"name": "ds_dynamic_pl",
+	"name": "ds_dynamic_pipeline",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Ls_BlobStorage",
