@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "adf-notebook01"
 		},
+		"Ls_BlobStorage_connectionString": {
+			"value": ""
+		},
 		"lsBlobStorage_connectionString": {
 			"value": ""
 		},

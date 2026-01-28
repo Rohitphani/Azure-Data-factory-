@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-notebook01"
 		},
+		"Ls_BlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Ls_BlobStorage'"
+		},
 		"lsBlobStorage_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'lsBlobStorage'"
@@ -20,6 +24,19 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Ls_BlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('Ls_BlobStorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/lsBlobStorage')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -47,12 +64,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Ls_cinema_source')]",
+			"name": "[concat(parameters('factoryName'), '/ds_destination')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "lsBlobStorage",
+					"referenceName": "Ls_BlobStorage",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -60,7 +77,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"container": "stdemosource"
+						"container": "stdestination"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -70,16 +87,16 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lsBlobStorage')]"
+				"[concat(variables('factoryId'), '/linkedServices/Ls_BlobStorage')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Ls_cinema_sink')]",
+			"name": "[concat(parameters('factoryName'), '/ds_source')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "lsBlobStoragesink",
+					"referenceName": "Ls_BlobStorage",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -87,7 +104,8 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"container": "stdemosink"
+						"fileName": "netflix_titles.csv",
+						"container": "stsource"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -97,44 +115,11 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lsBlobStoragesink')]"
+				"[concat(variables('factoryId'), '/linkedServices/Ls_BlobStorage')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Ls_cinema2025_source')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "lsBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Sales_Data.xlsx",
-						"container": "stdemosource"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "PK\u0003\u0004\u0014\u0000\u0000\u0000\b\u0000�Bh[\u0007AMb�\u0000\u0000\u0000�\u0000\u0000\u0000\u0010\u0000\u0000\u0000docProps/app.xmlM�=\u000b\u00021\u0010D��q��A�Bb@�R��\u000f{\u001b/�dC�B~�9��n\u001eo\u0018F�",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lsBlobStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/demo_pipeline1')]",
+			"name": "[concat(parameters('factoryName'), '/Netflix')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -186,14 +171,14 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "Ls_cinema2025_source",
+								"referenceName": "ds_source",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "Ls_cinema_sink",
+								"referenceName": "ds_destination",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -220,13 +205,13 @@
 						"userProperties": [],
 						"typeProperties": {
 							"dataset": {
-								"referenceName": "Ls_cinema_source",
+								"referenceName": "ds_source",
 								"type": "DatasetReference",
 								"parameters": {}
 							},
 							"logStorageSettings": {
 								"linkedServiceName": {
-									"referenceName": "lsBlobStorage",
+									"referenceName": "Ls_BlobStorage",
 									"type": "LinkedServiceReference"
 								}
 							},
@@ -234,6 +219,7 @@
 							"storeSettings": {
 								"type": "AzureBlobStorageReadSettings",
 								"recursive": true,
+								"wildcardFileName": "*.csv",
 								"enablePartitionDiscovery": false
 							}
 						}
@@ -245,10 +231,9 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Ls_cinema2025_source')]",
-				"[concat(variables('factoryId'), '/datasets/Ls_cinema_sink')]",
-				"[concat(variables('factoryId'), '/datasets/Ls_cinema_source')]",
-				"[concat(variables('factoryId'), '/linkedServices/lsBlobStorage')]"
+				"[concat(variables('factoryId'), '/datasets/ds_source')]",
+				"[concat(variables('factoryId'), '/datasets/ds_destination')]",
+				"[concat(variables('factoryId'), '/linkedServices/Ls_BlobStorage')]"
 			]
 		}
 	]

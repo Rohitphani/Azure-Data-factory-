@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-notebook01"
 		},
+		"Ls_BlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Ls_BlobStorage'"
+		},
 		"lsBlobStorage_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'lsBlobStorage'"
@@ -41,6 +45,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"Ls_BlobStorage_connectionString": {
+						"value": "[parameters('Ls_BlobStorage_connectionString')]"
 					},
 					"lsBlobStorage_connectionString": {
 						"value": "[parameters('lsBlobStorage_connectionString')]"
