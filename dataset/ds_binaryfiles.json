@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "raw-datasets",
+				"folderPath": "atomic-datasets",
 				"container": "cont-azure"
 			}
 		}
