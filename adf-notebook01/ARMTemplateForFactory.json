@@ -470,7 +470,7 @@
 											"referenceName": "ds_binaryCopyFiles",
 											"type": "DatasetReference",
 											"parameters": {
-												"FolderName": "raw-datasets",
+												"FolderName": "atomic-datasets",
 												"FileName": {
 													"value": "@item().name",
 													"type": "Expression"
@@ -721,7 +721,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"folderPath": "raw-datasets",
+						"folderPath": "atomic-datasets",
 						"container": "cont-azure"
 					}
 				}
