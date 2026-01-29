@@ -1,5 +1,5 @@
 {
-	"name": "Migrate-pipeline",
+	"name": "Migrate-sequential-pipeline",
 	"properties": {
 		"activities": [
 			{
@@ -49,7 +49,7 @@
 						"value": "@activity('Get Metadata info').output.childItems",
 						"type": "Expression"
 					},
-					"isSequential": true,
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "Copyeachfile",
