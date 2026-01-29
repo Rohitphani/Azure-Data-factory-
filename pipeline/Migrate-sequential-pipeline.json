@@ -134,7 +134,7 @@
 									"referenceName": "ds_binaryCopyFiles",
 									"type": "DatasetReference",
 									"parameters": {
-										"FolderName": "raw-datasets",
+										"FolderName": "atomic-datasets",
 										"FileName": {
 											"value": "@item().name",
 											"type": "Expression"
