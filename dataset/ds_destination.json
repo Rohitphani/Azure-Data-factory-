@@ -5,6 +5,9 @@
 			"referenceName": "Ls_BlobStorage",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "Blob-Container"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

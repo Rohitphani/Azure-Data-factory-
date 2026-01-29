@@ -1,5 +1,5 @@
 {
-	"name": "ds_source",
+	"name": "ds_binaryfiles",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Ls_BlobStorage",
@@ -9,18 +9,13 @@
 			"name": "Blob-Container"
 		},
 		"annotations": [],
-		"type": "DelimitedText",
+		"type": "Binary",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "netflix_titles.csv",
-				"container": "stsource"
-			},
-			"columnDelimiter": ",",
-			"escapeChar": "\\",
-			"firstRowAsHeader": true,
-			"quoteChar": "\""
-		},
-		"schema": []
+				"folderPath": "raw-datasets",
+				"container": "cont-azure"
+			}
+		}
 	}
 }
