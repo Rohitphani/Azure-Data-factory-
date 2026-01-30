@@ -8,6 +8,18 @@
 		"Ls_BlobStorage_connectionString": {
 			"value": ""
 		},
+		"Ls_SqlDB_password": {
+			"value": ""
+		},
+		"Ls_SqlDB_properties_typeProperties_server": {
+			"value": "azureserver-db.database.windows.net"
+		},
+		"Ls_SqlDB_properties_typeProperties_database": {
+			"value": "azure-database"
+		},
+		"Ls_SqlDB_properties_typeProperties_userName": {
+			"value": "azuresql-user"
+		},
 		"containerUri": {
 			"value": ""
 		},
