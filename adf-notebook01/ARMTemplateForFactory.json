@@ -1079,7 +1079,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"FileName": {
-													"value": "@concat(\n    item().Table_Name,\n    formatDateTime(utcNow(), 'dd-MM-yyyy')\n)",
+													"value": "@concat(\n    item().Table_Name,\n    ' ',\n    formatDateTime(utcNow(), 'dd-MM-yyyy')\n)",
 													"type": "Expression"
 												}
 											}
